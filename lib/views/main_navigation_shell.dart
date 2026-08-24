@@ -95,7 +95,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
-                Icon(FluentIcons.git_graph, color: AppTheme.pastelTeal, size: 20),
+                Image.asset('assets/logo1.ico', width: 20, height: 20),
                 const SizedBox(width: 8),
                 Text('GitHub Release Manager', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppTheme.textPrimary)),
                 const SizedBox(width: 20),
