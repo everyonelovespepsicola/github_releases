@@ -5,13 +5,13 @@
   "acrylicNavigationHeader": "#14161D",
   "borderOutline": "#2A2E3D",
   
-  "accent": "#71717A",
-  "onAccent": "#FFFFFF",
+  "accent": "#1A1D24",
+  "onAccent": "#F8FAFC",
   
   "accentText": "#F8FAFC",
   
-  "accentSecondary": "#9CA3AF",
-  "onAccentSecondary": "#000000",
+  "accentSecondary": "#2A2E3D",
+  "onAccentSecondary": "#F8FAFC",
   
   "textPrimary": "#F8FAFC",
   "textSecondary": "#94A3B8",

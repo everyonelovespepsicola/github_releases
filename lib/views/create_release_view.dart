@@ -374,10 +374,18 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
               const SizedBox(height: 8),
               Text(_statusMessage, style: TextStyle(color: AppTheme.pastelYellow, fontSize: 12, fontWeight: FontWeight.bold)),
             ] else ...[
-              SizedBox(
+              Container(
                 width: double.infinity,
                 height: 44,
-                child: FilledButton(
+                decoration: BoxDecoration(
+                  color: AppTheme.darkCardSurface,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: AppTheme.borderOutline),
+                ),
+                child: Button(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(AppTheme.darkCardSurface),
+                  ),
                   onPressed: _publishRelease,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

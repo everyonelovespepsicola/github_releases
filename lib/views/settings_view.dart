@@ -118,9 +118,19 @@ class _SettingsViewState extends State<SettingsView> {
                     spacing: 10,
                     runSpacing: 10,
                     children: [
-                      FilledButton(
-                        onPressed: _saveToken,
-                        child: Text('SAVE TOKEN', style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.onAccent)),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppTheme.darkCardSurface,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: AppTheme.borderOutline),
+                        ),
+                        child: Button(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(AppTheme.darkCardSurface),
+                          ),
+                          onPressed: _saveToken,
+                          child: Text('SAVE TOKEN', style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.onAccent)),
+                        ),
                       ),
                       Button(
                         onPressed: _isLoadingToken ? null : _autoDetectGhToken,
