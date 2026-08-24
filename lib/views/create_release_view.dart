@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/services.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import '../models/repository_info.dart';
@@ -66,6 +67,15 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
     }
   }
 
+  bool _isValidGitTag(String tag) {
+    if (tag.isEmpty) return false;
+    if (tag.startsWith('-') || tag.endsWith('.') || tag.endsWith('.lock')) return false;
+    final invalidChars = RegExp(r'[\s~^:?*\[\\\]@{}]');
+    if (invalidChars.hasMatch(tag)) return false;
+    if (tag.contains('..') || tag.contains('//')) return false;
+    return true;
+  }
+
   Future<void> _publishRelease() async {
     final repo = widget.activeRepo;
     if (repo == null || !repo.isValid) {
@@ -76,6 +86,18 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
     final tag = _tagController.text.trim();
     if (tag.isEmpty) {
       _showDialog('Missing Tag Name', 'Please enter a valid Git release tag (e.g. v1.0.0).');
+      return;
+    }
+
+    if (!_isValidGitTag(tag)) {
+      _showDialog(
+        'Invalid Git Tag Format',
+        'The tag "$tag" contains invalid characters.\n\n'
+        'Git Tag Rules:\n'
+        '• Cannot contain spaces, tildes (~), colons (:), carats (^), or wildcards (*, ?, [).\n'
+        '• Cannot contain consecutive dots (..) or slashes (//).\n'
+        '• Valid examples: v1.0.0, v1.0.0-beta.1, 1.2.3',
+      );
       return;
     }
 
@@ -195,6 +217,9 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
                     child: TextBox(
                       controller: _tagController,
                       placeholder: 'e.g. v1.0.0',
+                      inputFormatters: [
+                        FilteringTextInputFormatter.deny(RegExp(r'[\s~^:?*\[\\\]@{}]')),
+                      ],
                     ),
                   ),
                 ),
