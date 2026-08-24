@@ -11,6 +11,7 @@ class ThemeConfig {
   
   final Color accent;
   final Color onAccent;
+  final Color accentText;
   
   final Color accentSecondary;
   final Color onAccentSecondary;
@@ -35,6 +36,7 @@ class ThemeConfig {
     required this.borderOutline,
     required this.accent,
     required this.onAccent,
+    required this.accentText,
     required this.accentSecondary,
     required this.onAccentSecondary,
     required this.textPrimary,
@@ -64,13 +66,14 @@ class ThemeConfig {
 
   factory ThemeConfig.fromJson(Map<String, dynamic> json) {
     return ThemeConfig(
-      themeName: json['themeName'] as String? ?? 'Metro Dark',
+      themeName: json['themeName'] as String? ?? 'Metro Dark Monochrome',
       obsidianBackground: _parseHexColor(json['obsidianBackground'] as String? ?? '', const Color(0xFF0F0F12)),
       darkCardSurface: _parseHexColor(json['darkCardSurface'] as String? ?? '', const Color(0xFF1A1D24)),
       acrylicNavigationHeader: _parseHexColor(json['acrylicNavigationHeader'] as String? ?? '', const Color(0xFF14161D)),
       borderOutline: _parseHexColor(json['borderOutline'] as String? ?? '', const Color(0xFF2A2E3D)),
       accent: _parseHexColor(json['accent'] as String? ?? '', const Color(0xFF71717A)),
       onAccent: _parseHexColor(json['onAccent'] as String? ?? '', const Color(0xFFFFFFFF)),
+      accentText: _parseHexColor(json['accentText'] as String? ?? '', const Color(0xFFF8FAFC)),
       accentSecondary: _parseHexColor(json['accentSecondary'] as String? ?? '', const Color(0xFF9CA3AF)),
       onAccentSecondary: _parseHexColor(json['onAccentSecondary'] as String? ?? '', const Color(0xFF000000)),
       textPrimary: _parseHexColor(json['textPrimary'] as String? ?? '', const Color(0xFFF8FAFC)),
@@ -92,6 +95,7 @@ class ThemeConfig {
     borderOutline: Color(0xFF2A2E3D),
     accent: Color(0xFF71717A),
     onAccent: Color(0xFFFFFFFF),
+    accentText: Color(0xFFF8FAFC),
     accentSecondary: Color(0xFF9CA3AF),
     onAccentSecondary: Color(0xFF000000),
     textPrimary: Color(0xFFF8FAFC),
@@ -113,8 +117,9 @@ class AppTheme {
   static Color get acrylicNavigationHeader => current.acrylicNavigationHeader;
   static Color get borderOutline => current.borderOutline;
   
-  static Color get pastelTeal => current.accent;
+  static Color get accent => current.accent;
   static Color get onAccent => current.onAccent;
+  static Color get pastelTeal => current.accentText; // Boost font accent references to crisp white/light grey
   static Color get pastelLavender => current.accentSecondary;
   static Color get onAccentSecondary => current.onAccentSecondary;
   static Color get pastelRose => current.accentSecondary;
@@ -126,6 +131,7 @@ class AppTheme {
   
   static Color get textPrimary => current.textPrimary;
   static Color get textSecondary => current.textSecondary;
+  static Color get textHighlight => current.accentText;
 
   static Future<void> loadThemeFromAsset([String assetPath = 'assets/themes/metro_dark.json']) async {
     try {
