@@ -179,7 +179,7 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
       header: PageHeader(
         title: Row(
           children: [
-            const Icon(FluentIcons.rocket, color: AppTheme.pastelTeal, size: 22),
+            Icon(FluentIcons.rocket, color: AppTheme.pastelTeal, size: 22),
             const SizedBox(width: 10),
             const Text('Create & Publish Release'),
             const Spacer(),
@@ -194,9 +194,9 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(FluentIcons.code, color: AppTheme.pastelLavender, size: 14),
+                    Icon(FluentIcons.code, color: AppTheme.pastelLavender, size: 14),
                     const SizedBox(width: 6),
-                    Text(repo.fullName, style: const TextStyle(color: AppTheme.pastelLavender, fontWeight: FontWeight.bold, fontSize: 12)),
+                    Text(repo.fullName, style: TextStyle(color: AppTheme.pastelLavender, fontWeight: FontWeight.bold, fontSize: 12)),
                   ],
                 ),
               ),
@@ -299,14 +299,14 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
                 ),
                 child: Column(
                   children: [
-                    const Icon(FluentIcons.cloud_upload, color: AppTheme.pastelTeal, size: 36),
+                    Icon(FluentIcons.cloud_upload, color: AppTheme.pastelTeal, size: 36),
                     const SizedBox(height: 8),
-                    const Text(
+                    Text(
                       'Drag & Drop Release Binaries (.zip, .exe, .apk, .7z) Here',
                       style: TextStyle(color: AppTheme.textPrimary, fontWeight: FontWeight.bold, fontSize: 13),
                     ),
                     const SizedBox(height: 4),
-                    const Text('or click the button below to pick files from your computer', style: TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
+                    Text('or click the button below to pick files from your computer', style: TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
                     const SizedBox(height: 12),
                     Button(
                       onPressed: _pickFiles,
@@ -327,7 +327,7 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
 
             // Attached Files List
             if (_attachedFilePaths.isNotEmpty) ...[
-              const Text('ATTACHED RELEASE ASSETS:', style: TextStyle(color: AppTheme.pastelLavender, fontSize: 11, fontWeight: FontWeight.bold)),
+              Text('ATTACHED RELEASE ASSETS:', style: TextStyle(color: AppTheme.pastelLavender, fontSize: 11, fontWeight: FontWeight.bold)),
               const SizedBox(height: 6),
               ListView.builder(
                 shrinkWrap: true,
@@ -349,13 +349,13 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
                     ),
                     child: Row(
                       children: [
-                        const Icon(FluentIcons.archive, color: AppTheme.pastelTeal, size: 16),
+                        Icon(FluentIcons.archive, color: AppTheme.pastelTeal, size: 16),
                         const SizedBox(width: 8),
                         Expanded(child: Text(name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12))),
-                        Text(formattedSize, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
+                        Text(formattedSize, style: TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
                         const SizedBox(width: 12),
                         IconButton(
-                          icon: const Icon(FluentIcons.delete, color: AppTheme.pastelCoral, size: 14),
+                          icon: Icon(FluentIcons.delete, color: AppTheme.pastelCoral, size: 14),
                           onPressed: () {
                             setState(() => _attachedFilePaths.removeAt(idx));
                           },
@@ -372,19 +372,19 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
             if (_isPublishing) ...[
               ProgressBar(value: null),
               const SizedBox(height: 8),
-              Text(_statusMessage, style: const TextStyle(color: AppTheme.pastelYellow, fontSize: 12, fontWeight: FontWeight.bold)),
+              Text(_statusMessage, style: TextStyle(color: AppTheme.pastelYellow, fontSize: 12, fontWeight: FontWeight.bold)),
             ] else ...[
               SizedBox(
                 width: double.infinity,
                 height: 44,
                 child: FilledButton(
                   onPressed: _publishRelease,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(FluentIcons.rocket, size: 18, color: Colors.black),
-                      SizedBox(width: 8),
-                      Text('PUBLISH RELEASE TO GITHUB', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
+                      Icon(FluentIcons.rocket, size: 18, color: AppTheme.onAccent),
+                      const SizedBox(width: 8),
+                      Text('PUBLISH RELEASE TO GITHUB', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: AppTheme.onAccent)),
                     ],
                   ),
                 ),

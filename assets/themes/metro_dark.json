@@ -1,0 +1,25 @@
+{
+  "themeName": "Metro Dark",
+  "obsidianBackground": "#0F0F12",
+  "darkCardSurface": "#1A1D24",
+  "acrylicNavigationHeader": "#14161D",
+  "borderOutline": "#2A2E3D",
+  
+  "accent": "#0078D4",
+  "onAccent": "#FFFFFF",
+  
+  "accentSecondary": "#3B82F6",
+  "onAccentSecondary": "#FFFFFF",
+  
+  "textPrimary": "#F8FAFC",
+  "textSecondary": "#94A3B8",
+  
+  "warningYellow": "#F59E0B",
+  "onWarningYellow": "#000000",
+  
+  "dangerRed": "#EF4444",
+  "onDangerRed": "#FFFFFF",
+  
+  "successGreen": "#22C55E",
+  "onSuccessGreen": "#000000"
+}

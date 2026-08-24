@@ -6,6 +6,8 @@ import 'views/main_navigation_shell.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
+  await AppTheme.loadThemeFromAsset();
+
 
   const windowOptions = WindowOptions(
     size: Size(1200, 780),

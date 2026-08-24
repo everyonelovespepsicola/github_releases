@@ -47,23 +47,6 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     }
   }
 
-  Future<void> _pickFolder() async {
-    final selectedDirectory = await FilePicker.platform.getDirectoryPath();
-    if (selectedDirectory != null) {
-      final repo = await GitConfigParser.parseDirectory(selectedDirectory);
-      if (mounted) {
-        if (repo != null) {
-          setState(() {
-            _activeRepo = repo;
-            _customRepoUrlController.text = repo.fullName;
-          });
-        } else {
-          _showDialog('No Git Remote Found', 'No .git/config with a valid GitHub origin URL was found in $selectedDirectory.');
-        }
-      }
-    }
-  }
-
   void _applyCustomRepoText() {
     final text = _customRepoUrlController.text.trim();
     if (text.isEmpty) return;
@@ -112,9 +95,9 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
-                const Icon(FluentIcons.git_graph, color: AppTheme.pastelTeal, size: 20),
+                Icon(FluentIcons.git_graph, color: AppTheme.pastelTeal, size: 20),
                 const SizedBox(width: 8),
-                const Text('GitHub Release Manager', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppTheme.textPrimary)),
+                Text('GitHub Release Manager', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppTheme.textPrimary)),
                 const SizedBox(width: 20),
 
                 // GitHub Desktop Style Repository Selector Flyout Trigger
@@ -148,21 +131,21 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(FluentIcons.repo, color: AppTheme.pastelTeal, size: 14),
+                          Icon(FluentIcons.repo, color: AppTheme.pastelTeal, size: 14),
                           const SizedBox(width: 8),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Current repository', style: TextStyle(fontSize: 9, color: AppTheme.textSecondary)),
+                              Text('Current repository', style: TextStyle(fontSize: 9, color: AppTheme.textSecondary)),
                               Text(
                                 _activeRepo != null ? _activeRepo!.fullName : 'Select Repository...',
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.pastelTeal),
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.pastelTeal),
                               ),
                             ],
                           ),
                           const SizedBox(width: 10),
-                          const Icon(FluentIcons.chevron_down, size: 10, color: AppTheme.textSecondary),
+                          Icon(FluentIcons.chevron_down, size: 10, color: AppTheme.textSecondary),
                         ],
                       ),
                     ),
@@ -182,18 +165,18 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
                     ),
                     child: Row(
                       children: [
-                        const Icon(FluentIcons.code, color: AppTheme.pastelLavender, size: 14),
+                        Icon(FluentIcons.code, color: AppTheme.pastelLavender, size: 14),
                         const SizedBox(width: 6),
                         Expanded(
                           child: TextBox(
                             controller: _customRepoUrlController,
                             placeholder: 'owner/repo or https://github.com/owner/repo',
-                            style: const TextStyle(fontSize: 12, color: AppTheme.pastelTeal, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 12, color: AppTheme.pastelTeal, fontWeight: FontWeight.bold),
                             onSubmitted: (_) => _applyCustomRepoText(),
                           ),
                         ),
                         IconButton(
-                          icon: const Icon(FluentIcons.check_mark, size: 12, color: AppTheme.pastelGreen),
+                          icon: Icon(FluentIcons.check_mark, size: 12, color: AppTheme.pastelGreen),
                           onPressed: _applyCustomRepoText,
                         ),
                       ],

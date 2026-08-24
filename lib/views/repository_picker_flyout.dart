@@ -107,17 +107,17 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
           // Header Search & Title Bar
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: AppTheme.obsidianBackground,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
                   children: [
                     Icon(FluentIcons.repo, color: AppTheme.pastelTeal, size: 16),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text('Select Active Repository', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppTheme.textPrimary)),
                   ],
                 ),
@@ -126,8 +126,8 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                   controller: _searchController,
                   placeholder: 'Filter repositories (e.g. ADB_Toolkit)...',
                   onChanged: (val) => setState(() => _searchQuery = val),
-                  prefix: const Padding(
-                    padding: EdgeInsets.only(left: 8.0),
+                  prefix: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Icon(FluentIcons.search, size: 12, color: AppTheme.textSecondary),
                   ),
                 ),
@@ -150,7 +150,7 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(FluentIcons.pinned, size: 11, color: AppTheme.pastelTeal),
+                        Icon(FluentIcons.pinned, size: 11, color: AppTheme.pastelTeal),
                         const SizedBox(width: 4),
                         Text('Recent (${_recentRepos.length})', style: const TextStyle(fontSize: 11)),
                       ],
@@ -167,7 +167,7 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(FluentIcons.folder_open, size: 11, color: AppTheme.pastelLavender),
+                        Icon(FluentIcons.folder_open, size: 11, color: AppTheme.pastelLavender),
                         const SizedBox(width: 4),
                         Text('Local (${_localRepos.length})', style: const TextStyle(fontSize: 11)),
                       ],
@@ -184,7 +184,7 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(FluentIcons.cloud, size: 11, color: AppTheme.pastelRose),
+                        Icon(FluentIcons.cloud, size: 11, color: AppTheme.pastelRose),
                         const SizedBox(width: 4),
                         Text('GitHub (${_remoteRepos.length})', style: const TextStyle(fontSize: 11)),
                       ],
@@ -204,9 +204,9 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(FluentIcons.open_folder_horizontal, color: AppTheme.pastelLavender, size: 28),
+                            Icon(FluentIcons.open_folder_horizontal, color: AppTheme.pastelLavender, size: 28),
                             const SizedBox(height: 8),
-                            Text('No repositories found matching "$_searchQuery"', style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
+                            Text('No repositories found matching "$_searchQuery"', style: TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
                           ],
                         ),
                       )
@@ -250,7 +250,7 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                                         if (repo.localPath.isNotEmpty)
                                           Text(
                                             repo.localPath,
-                                            style: const TextStyle(color: AppTheme.textSecondary, fontSize: 10),
+                                            style: TextStyle(color: AppTheme.textSecondary, fontSize: 10),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -258,7 +258,7 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
                                     ),
                                   ),
                                   if (isSelected)
-                                    const Icon(FluentIcons.check_mark, color: AppTheme.pastelGreen, size: 14),
+                                    Icon(FluentIcons.check_mark, color: AppTheme.pastelGreen, size: 14),
                                 ],
                               ),
                             ),
@@ -270,9 +270,9 @@ class _RepositoryPickerFlyoutState extends State<RepositoryPickerFlyout> {
           // Footer Action Bar
           Container(
             padding: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: AppTheme.obsidianBackground,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
             ),
             child: Row(
               children: [

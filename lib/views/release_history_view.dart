@@ -76,7 +76,7 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => ContentDialog(
-        title: const Text('Delete Release Confirmation', style: TextStyle(color: AppTheme.pastelCoral, fontWeight: FontWeight.bold)),
+        title: Text('Delete Release Confirmation', style: TextStyle(color: AppTheme.pastelCoral, fontWeight: FontWeight.bold)),
         content: Text('Are you sure you want to delete release "${release.tagName}"? This will also delete all attached asset binaries on GitHub.'),
         actions: [
           Button(
@@ -84,7 +84,8 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
             onPressed: () => Navigator.of(ctx).pop(false),
           ),
           FilledButton(
-            child: const Text('DELETE RELEASE', style: TextStyle(fontWeight: FontWeight.bold)),
+            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppTheme.pastelCoral)),
+            child: Text('DELETE RELEASE', style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.onDangerRed)),
             onPressed: () => Navigator.of(ctx).pop(true),
           ),
         ],
@@ -112,7 +113,7 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
       header: PageHeader(
         title: Row(
           children: [
-            const Icon(FluentIcons.history, color: AppTheme.pastelLavender, size: 22),
+            Icon(FluentIcons.history, color: AppTheme.pastelLavender, size: 22),
             const SizedBox(width: 10),
             const Text('Release History & Assets'),
             const Spacer(),
@@ -130,9 +131,9 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(FluentIcons.warning, color: AppTheme.pastelYellow, size: 36),
+                      Icon(FluentIcons.warning, color: AppTheme.pastelYellow, size: 36),
                       const SizedBox(height: 12),
-                      Text(_errorMessage!, style: const TextStyle(color: AppTheme.textSecondary), textAlign: TextAlign.center),
+                      Text(_errorMessage!, style: TextStyle(color: AppTheme.textSecondary), textAlign: TextAlign.center),
                       const SizedBox(height: 12),
                       Button(onPressed: _loadReleases, child: const Text('Retry Fetching Releases')),
                     ],
@@ -143,9 +144,9 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(FluentIcons.open_folder_horizontal, color: AppTheme.pastelLavender, size: 40),
+                          Icon(FluentIcons.open_folder_horizontal, color: AppTheme.pastelLavender, size: 40),
                           const SizedBox(height: 12),
-                          Text('No published releases found for ${repo?.fullName ?? "this repository"}.', style: const TextStyle(color: AppTheme.textSecondary)),
+                          Text('No published releases found for ${repo?.fullName ?? "this repository"}.', style: TextStyle(color: AppTheme.textSecondary)),
                         ],
                       ),
                     )
@@ -179,12 +180,12 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                                     child: Text(badgeLabel, style: TextStyle(color: badgeColor, fontSize: 10, fontWeight: FontWeight.bold)),
                                   ),
                                   const SizedBox(width: 10),
-                                  Text(rel.tagName, style: const TextStyle(color: AppTheme.pastelTeal, fontWeight: FontWeight.bold, fontSize: 16)),
+                                  Text(rel.tagName, style: TextStyle(color: AppTheme.pastelTeal, fontWeight: FontWeight.bold, fontSize: 16)),
                                   const SizedBox(width: 10),
-                                  Text(rel.title, style: const TextStyle(color: AppTheme.textPrimary, fontSize: 14)),
+                                  Text(rel.title, style: TextStyle(color: AppTheme.textPrimary, fontSize: 14)),
                                   const Spacer(),
                                   IconButton(
-                                    icon: const Icon(FluentIcons.delete, color: AppTheme.pastelCoral, size: 16),
+                                    icon: Icon(FluentIcons.delete, color: AppTheme.pastelCoral, size: 16),
                                     onPressed: () => _deleteRelease(rel),
                                   ),
                                 ],
@@ -200,7 +201,7 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                                   ),
                                   child: Text(
                                     rel.body,
-                                    style: const TextStyle(color: AppTheme.textSecondary, fontSize: 12),
+                                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                                     maxLines: 4,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -208,7 +209,7 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                               ],
                               if (rel.assets.isNotEmpty) ...[
                                 const SizedBox(height: 10),
-                                const Text('ATTACHED ASSETS:', style: TextStyle(color: AppTheme.textSecondary, fontSize: 10, fontWeight: FontWeight.bold)),
+                                Text('ATTACHED ASSETS:', style: TextStyle(color: AppTheme.textSecondary, fontSize: 10, fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 6),
                                 Wrap(
                                   spacing: 8,
@@ -224,11 +225,11 @@ class _ReleaseHistoryViewState extends State<ReleaseHistoryView> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const Icon(FluentIcons.download, color: AppTheme.pastelTeal, size: 12),
+                                          Icon(FluentIcons.download, color: AppTheme.pastelTeal, size: 12),
                                           const SizedBox(width: 6),
                                           Text(asset.name, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
                                           const SizedBox(width: 6),
-                                          Text('(${asset.formattedSize} • ${asset.downloadCount} downloads)', style: const TextStyle(color: AppTheme.textSecondary, fontSize: 10)),
+                                          Text('(${asset.formattedSize} • ${asset.downloadCount} downloads)', style: TextStyle(color: AppTheme.textSecondary, fontSize: 10)),
                                         ],
                                       ),
                                     );

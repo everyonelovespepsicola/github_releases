@@ -74,12 +74,12 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage.withPadding(
-      header: const PageHeader(
+      header: PageHeader(
         title: Row(
           children: [
             Icon(FluentIcons.settings, color: AppTheme.pastelTeal, size: 22),
-            SizedBox(width: 10),
-            Text('Settings & GitHub Authentication'),
+            const SizedBox(width: 10),
+            const Text('Settings & GitHub Authentication'),
           ],
         ),
       ),
@@ -99,15 +99,15 @@ class _SettingsViewState extends State<SettingsView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Icon(FluentIcons.lock, color: AppTheme.pastelLavender, size: 18),
-                      SizedBox(width: 8),
-                      Text('GITHUB API AUTHENTICATION TOKEN:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      const SizedBox(width: 8),
+                      const Text('GITHUB API AUTHENTICATION TOKEN:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  Text(_authStatusMessage, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
+                  Text(_authStatusMessage, style: TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
                   const SizedBox(height: 12),
                   TextBox(
                     controller: _tokenController,
@@ -120,7 +120,7 @@ class _SettingsViewState extends State<SettingsView> {
                     children: [
                       FilledButton(
                         onPressed: _saveToken,
-                        child: const Text('SAVE TOKEN', style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: Text('SAVE TOKEN', style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.onAccent)),
                       ),
                       Button(
                         onPressed: _isLoadingToken ? null : _autoDetectGhToken,
@@ -149,19 +149,19 @@ class _SettingsViewState extends State<SettingsView> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppTheme.borderOutline),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Icon(FluentIcons.color, color: AppTheme.pastelRose, size: 18),
-                      SizedBox(width: 8),
-                      Text('PASTEL HIGH-CONTRAST DARK THEME ACTIVE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      Icon(FluentIcons.color, color: AppTheme.pastelTeal, size: 18),
+                      const SizedBox(width: 8),
+                      Text('METRO DARK JSON THEME ACTIVE (${AppTheme.current.themeName})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
                     ],
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
-                    'Built with Windows 11 Fluent UI framework using high-contrast pastel accents (Mint, Lavender, Rose, Soft Green, Amber, Coral).',
+                    'Built with JSON-driven theme schema (assets/themes/metro_dark.json) using paired contrast tokens (Deep Charcoal, Dark Greys, Crisp Whites, Amber Yellow, Crimson Red).',
                     style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                   ),
                 ],
