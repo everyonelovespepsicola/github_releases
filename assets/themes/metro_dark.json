@@ -10,8 +10,8 @@
   
   "accentText": "#F8FAFC",
   
-  "accentSecondary": "#2A2E3D",
-  "onAccentSecondary": "#F8FAFC",
+  "accentSecondary": "#9CA3AF",
+  "onAccentSecondary": "#000000",
   
   "textPrimary": "#F8FAFC",
   "textSecondary": "#94A3B8",
