@@ -36,6 +36,31 @@ class GitHubApiService {
     return null;
   }
 
+  static Future<List<String>> fetchBranches(String owner, String repo) async {
+    final token = await getSavedToken();
+    final url = Uri.parse('https://api.github.com/repos/$owner/$repo/branches');
+
+    final headers = <String, String>{
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'GitHubReleaseManager/1.0',
+    };
+
+    if (token != null && token.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+
+    try {
+      final response = await http.get(url, headers: headers).timeout(const Duration(seconds: 10));
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonList = jsonDecode(response.body);
+        final branches = jsonList.map((e) => e['name'] as String).toList();
+        if (branches.isNotEmpty) return branches;
+      }
+    } catch (_) {}
+    return ['master', 'main'];
+  }
+
   static Future<List<GitHubRelease>> fetchReleases(String owner, String repo) async {
     final token = await getSavedToken();
     final url = Uri.parse('https://api.github.com/repos/$owner/$repo/releases');

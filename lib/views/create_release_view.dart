@@ -25,7 +25,10 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
   final _tagController = TextEditingController(text: 'v1.0.0');
   final _titleController = TextEditingController(text: 'v1.0.0 - Official Release');
   final _bodyController = TextEditingController();
-  final _targetBranchController = TextEditingController(text: 'main');
+
+  List<String> _availableBranches = ['master', 'main'];
+  String _selectedBranch = 'master';
+  bool _isLoadingBranches = false;
 
   bool _isDraft = false;
   bool _isPrerelease = false;
@@ -38,6 +41,38 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
   void initState() {
     super.initState();
     _applyDefaultTemplate();
+    _loadBranches();
+  }
+
+  @override
+  void didUpdateWidget(covariant CreateReleaseView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.activeRepo?.fullName != oldWidget.activeRepo?.fullName) {
+      _loadBranches();
+    }
+  }
+
+  Future<void> _loadBranches() async {
+    final repo = widget.activeRepo;
+    if (repo == null || !repo.isValid) return;
+
+    setState(() => _isLoadingBranches = true);
+    try {
+      final branches = await GitHubApiService.fetchBranches(repo.owner, repo.repo);
+      if (mounted) {
+        setState(() {
+          _availableBranches = branches;
+          if (branches.contains('master')) {
+            _selectedBranch = 'master';
+          } else if (branches.isNotEmpty) {
+            _selectedBranch = branches.first;
+          }
+          _isLoadingBranches = false;
+        });
+      }
+    } catch (_) {
+      if (mounted) setState(() => _isLoadingBranches = false);
+    }
   }
 
   void _applyDefaultTemplate() {
@@ -115,7 +150,7 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
         body: _bodyController.text,
         isDraft: _isDraft,
         isPrerelease: _isPrerelease,
-        targetCommitish: _targetBranchController.text.trim(),
+        targetCommitish: _selectedBranch,
       );
 
       final uploadUrl = releaseJson['upload_url'] as String?;
@@ -207,7 +242,7 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Grid: Tag, Title, Branch
+            // Top Grid: Tag, Title, Branch Dropdown
             Row(
               children: [
                 Expanded(
@@ -239,9 +274,19 @@ class _CreateReleaseViewState extends State<CreateReleaseView> {
                   flex: 2,
                   child: InfoLabel(
                     label: 'Target Branch:',
-                    child: TextBox(
-                      controller: _targetBranchController,
-                      placeholder: 'main',
+                    child: ComboBox<String>(
+                      value: _availableBranches.contains(_selectedBranch) ? _selectedBranch : _availableBranches.first,
+                      items: _availableBranches.map((b) {
+                        return ComboBoxItem<String>(
+                          value: b,
+                          child: Text(b),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        if (val != null) {
+                          setState(() => _selectedBranch = val);
+                        }
+                      },
                     ),
                   ),
                 ),
