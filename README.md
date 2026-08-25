@@ -48,3 +48,8 @@
 - [Flutter](https://flutter.dev/) - Cross-platform UI framework
 - [fluent_ui](https://pub.dev/packages/fluent_ui) - Windows Fluent UI widgets for Flutter
 - [window_manager](https://pub.dev/packages/window_manager) - Window management for desktop Flutter apps
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
