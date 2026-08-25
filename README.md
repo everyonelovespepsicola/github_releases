@@ -9,6 +9,9 @@
 
 **GitHub Release Manager** is a sleek, modern Fluent UI desktop application built with Flutter to streamline and automate creating, managing, and publishing GitHub releases for your repositories.
 
+> [!TIP]
+> **Standalone & Fast Setup**: This app works completely on its own, but for the fastest setup and seamless experience, it can automatically detect and use settings from **GitHub Desktop**.
+
 ## Key Features
 
 - 🚀 **Create Releases**: Fast and intuitive interface to draft, attach assets, add release notes, and publish releases.
