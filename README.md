@@ -23,6 +23,8 @@
 ## Prerequisites
 
 - **Flutter SDK**: `^3.13.1` or higher
+- **CMake**: `3.14` or higher (required for native Windows build)
+- **C++ Build Tools**: Visual Studio 2022 (with Desktop development with C++)
 - **Target OS**: Windows Desktop (also cross-platform ready via Flutter)
 
 ## Getting Started
@@ -48,6 +50,8 @@
 - [Flutter](https://flutter.dev/) - Cross-platform UI framework
 - [fluent_ui](https://pub.dev/packages/fluent_ui) - Windows Fluent UI widgets for Flutter
 - [window_manager](https://pub.dev/packages/window_manager) - Window management for desktop Flutter apps
+- **CMake & C++** - Native Windows runner build system and embedding harness
+- **PowerShell** - Automated release packaging and publishing scripts
 
 ## License
 
