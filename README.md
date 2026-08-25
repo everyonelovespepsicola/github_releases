@@ -1,17 +1,47 @@
-# github_releases
+# GitHub Release Manager
 
-A new Flutter project.
+<p align="center">
+  <img src="assets/1.png" width="48%" alt="GitHub Release Manager Screenshot 1" />
+  <img src="assets/2.png" width="48%" alt="GitHub Release Manager Screenshot 2" />
+</p>
+
+## Overview
+
+**GitHub Release Manager** is a sleek, modern Fluent UI desktop application built with Flutter to streamline and automate creating, managing, and publishing GitHub releases for your repositories.
+
+## Key Features
+
+- 🚀 **Create Releases**: Fast and intuitive interface to draft, attach assets, add release notes, and publish releases.
+- 📜 **Release History**: View and track existing releases across configured repositories.
+- 📂 **Repository Management**: Easily manage multiple target repositories with integrated flyout pickers.
+- 🎨 **Modern Fluent UI**: Custom-styled dark theme optimized for desktop workflows using Microsoft Fluent Design principles.
+- ⚙️ **Configurable Settings**: Token management, custom defaults, and persistent user preferences.
+
+## Prerequisites
+
+- **Flutter SDK**: `^3.13.1` or higher
+- **Target OS**: Windows Desktop (also cross-platform ready via Flutter)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/everyonelovespepsicola/github_releases.git
+   cd github_releases
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+2. **Install dependencies:**
+   ```bash
+   flutter pub get
+   ```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+3. **Run the application:**
+   ```bash
+   flutter run -d windows
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Built With
+
+- [Flutter](https://flutter.dev/) - Cross-platform UI framework
+- [fluent_ui](https://pub.dev/packages/fluent_ui) - Windows Fluent UI widgets for Flutter
+- [window_manager](https://pub.dev/packages/window_manager) - Window management for desktop Flutter apps
